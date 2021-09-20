@@ -11,10 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Merge main to gh-pages branch
-        uses: devmasx/merge-branch@v1.4.0
+      - uses: everlytic/branch-merge@1.1.2
         with:
-          type: now
-          from_branch: main
-          target_branch: gh-pages
           github_token: ${{ github.token }}
+          source_ref: ${{ github.ref }}
+          target_branch: gh-pages
+          commit_message_template: "Automated merge of {source_ref} into target branch {target_branch}"
